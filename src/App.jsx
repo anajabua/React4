@@ -1,3 +1,7 @@
+// რაღაცეები დავგუგლე რადგან არ მახსოვდა და დანარჩენი ავაწყე წინა ლექციებიდან 
+// გამომდინარე + გავითვალისწინე შენი ნათქვამი კომიტებზე და გითჰაბზე + ვიწერდი 
+// ლექციას და რასაც წერდი მაქიდან გამომდინარე დავწერე.
+
 import { useState } from 'react'
 import './App.css'
 import TodoList from "./toDoList";
@@ -21,7 +25,13 @@ export default function App() {
 };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "400px", margin: "auto" , display:"flex", justifyContent:"center"}}>
+    <div style={{ padding: "40px", 
+                  maxWidth: "400px", 
+                  margin: "auto",
+                  marginTop:"20px",
+                  display:"flex",
+                  flexDirection:"column", 
+                  justifyContent:"center"}}>
       <h1>Todo List Lite</h1>
       <input
         type="text"
