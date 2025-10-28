@@ -1,35 +1,43 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import TodoList from "./toDoList";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState("");
+
+  const AddTodo = () => {
+    if (input.trim() === "") return;
+    if (todos.length >= 5) {
+      alert("მაქსიმუმ შეგიძლია 5 ToDo შეიყვანო");
+      return;
+    }
+    setTodos([...todos, input.trim()]);
+    setInput("");
+  };
+
+  const DeleteTodo = (index) => {
+  setTodos(todos.filter((todoItem, todoIndex) => todoIndex !== index));  
+};
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div style={{ padding: "20px", maxWidth: "400px", margin: "auto" , display:"flex", justifyContent:"center"}}>
+      <h1>Todo List Lite</h1>
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="ჩაწერე შენი გეგმა..."
+      />
+      <button onClick={AddTodo}>Add Todo</button>
+
+      {todos.length === 0 ? (
+        <p>არაფერი გაქვთ დაგეგმილი</p>
+      ) : (
+        <TodoList todos={todos} onDelete={DeleteTodo} />
+      )}
+    </div>
+  );
 }
 
-export default App
+
